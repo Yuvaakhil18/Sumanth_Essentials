@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sumanth Essentials — Discover premium fashion essentials. Shop trending outerwear, t-shirts, shoes, bags & more with free shipping on orders over ₹999." />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20261015" />
+    <title>Sumanth Essentials | Online Fashion Store</title>
+  </head>
+  <body>
+
+    <!-- Announcement Bar (Slow Marquee) -->
+    <div class="announcement-bar" id="announcementBar">
+      <div class="announcement-bar__track">
+        <span class="announcement-bar__item">✦ Free Shipping on Orders Over ₹999</span>
+        <span class="announcement-bar__item">✦ Extra 55% OFF in Spring Sale</span>
+        <span class="announcement-bar__item">✦ New Collection Just Dropped</span>
+        <span class="announcement-bar__item">✦ Free Returns Within 30 Days</span>
+        <span class="announcement-bar__item">✦ Free Shipping on Orders Over ₹999</span>
+        <span class="announcement-bar__item">✦ Extra 55% OFF in Spring Sale</span>
+        <span class="announcement-bar__item">✦ New Collection Just Dropped</span>
+        <span class="announcement-bar__item">✦ Free Returns Within 30 Days</span>
+      </div>
+    </div>
+
+    <!-- Navigation (Frosted Glass — Always Visible) -->
+    <nav class="nav" id="mainNav">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo" id="navLogo">SUMANTH ESSENTIALS</a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#collection">Collection</a></li>
+          <li><a href="#editorial">Blog</a></li>
+          <li><a href="#brands">Lookbook</a></li>
+        </ul>
+        <div class="nav__actions">
+          <span id="navSearch" title="Search"><i class="ri-search-line"></i></span>
+          <span id="navUser" title="Account"><i class="ri-user-line"></i></span>
+          <span id="navCart" title="Cart" class="nav__cart-btn">
+            <i class="ri-shopping-bag-line"></i>
+            <span class="nav__cart-badge" id="cartBadge">0</span>
+          </span>
+          <span class="nav__toggle" id="navToggle" title="Menu"><i class="ri-menu-line"></i></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay__inner">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrap">
+            <i class="ri-search-line"></i>
+            <input type="text" id="searchInput" placeholder="Search for products, categories..." autocomplete="off" />
+          </div>
+          <button class="search-overlay__close" id="searchClose">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        <div class="search-overlay__suggestions" id="searchSuggestions">
+          <p class="search-overlay__label">Popular Searches</p>
+          <div class="search-overlay__tags">
+            <button class="search-tag" data-search="t-shirt">T-Shirts</button>
+            <button class="search-tag" data-search="jacket">Jackets</button>
+            <button class="search-tag" data-search="shoes">Shoes</button>
+            <button class="search-tag" data-search="bag">Bags</button>
+            <button class="search-tag" data-search="pants">Pants</button>
+            <button class="search-tag" data-search="sweater">Sweaters</button>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <!-- Account Dropdown -->
+    <div class="account-dropdown" id="accountDropdown">
+      <div class="account-dropdown__inner">
+        <div class="account-dropdown__header">
+          <div class="account-dropdown__avatar">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <div>
+            <p class="account-dropdown__name">Welcome!</p>
+            <p class="account-dropdown__sub">Sign in to your account</p>
+          </div>
+        </div>
+        <div class="account-dropdown__links">
+          <a href="#"><i class="ri-user-line"></i> My Profile</a>
+          <a href="#"><i class="ri-shopping-bag-line"></i> My Orders</a>
+          <a href="#"><i class="ri-heart-line"></i> Wishlist</a>
+          <a href="#"><i class="ri-settings-3-line"></i> Settings</a>
+        </div>
+        <div class="account-dropdown__footer">
+          <button class="btn btn--primary btn--full" id="signInBtn">Sign In</button>
+          <p class="account-dropdown__register">New here? <a href="#">Create Account</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer__header">
+        <h3>Shopping Bag</h3>
+        <button class="cart-drawer__close" id="cartClose"><i class="ri-close-line"></i></button>
+      </div>
+      <div class="cart-drawer__items" id="cartItems">
+        <!-- Cart items injected by JS -->
+      </div>
+      <div class="cart-drawer__empty" id="cartEmpty">
+        <i class="ri-shopping-bag-line"></i>
+        <p>Your bag is empty</p>
+        <a href="#products" class="btn btn--primary" id="cartShopBtn">Start Shopping</a>
+      </div>
+      <div class="cart-drawer__footer" id="cartFooter" style="display:none;">
+        <div class="cart-drawer__total">
+          <span>Subtotal</span>
+          <span id="cartTotal">₹0</span>
+        </div>
+        <button class="btn btn--primary btn--full" id="checkoutBtn">Checkout</button>
+        <p class="cart-drawer__note">Shipping & taxes calculated at checkout</p>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer__close" id="drawerClose">
+        <i class="ri-close-line"></i>
+      </div>
+      <div class="mobile-drawer__links">
+        <a href="#hero">Home</a>
+        <a href="#products">Shop</a>
+        <a href="#collection">Collection</a>
+        <a href="#editorial">Blog</a>
+        <a href="#brands">Lookbook</a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+      <div class="section__container hero__container">
+        <div class="hero__content reveal">
+          <span class="hero__eyebrow">Spring / Summer 2024</span>
+          <h1 class="hero__title">
+            Discover & Shop<br />
+            <span>Sumanth Essentials</span>
+          </h1>
+          <p class="hero__description">
+            Curated fashion essentials designed for the modern wardrobe.
+            Premium quality, timeless style, effortless confidence.
+          </p>
+          <div class="hero__cta-group">
+            <button class="btn btn--primary" id="heroShopBtn">Shop Now</button>
+            <a href="#collection" class="btn btn--secondary" id="heroExploreBtn">Explore Collection</a>
+          </div>
+        </div>
+        <div class="hero__image reveal reveal-delay-2">
+          <img src="assets/hmgoepprod__1_-removebg.png" alt="Sumanth Essentials featured fashion model" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+      <!-- Collection Banner -->
+      <section class="collection-banner" id="collection">
+        <div class="section__container">
+          <div class="collection-banner__card reveal">
+            <div class="collection-banner__image">
+              <img src="assets/6030-3x2-Panthera-Top-Image-M.jpg" alt="New collection preview" loading="lazy" />
+            </div>
+            <div class="collection-banner__content">
+              <span class="section__kicker">New Arrival</span>
+              <h2 class="section__title">New Collection</h2>
+              <span class="collection-banner__tag">#35 Items</span>
+              <p class="collection-banner__available">Available on Store</p>
+              <button class="btn btn--outline" id="collectionShopBtn">Shop Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sale Section (Bento Cards) -->
+      <section class="sale" id="sale">
+        <div class="section__container">
+          <div class="section__header reveal">
+            <span class="section__kicker">Limited Time</span>
+            <h2 class="section__title">On Sale</h2>
+            <p class="section__subtitle">Don't miss our exclusive seasonal deals on premium styles.</p>
+          </div>
+          <div class="sale__grid">
+            <div class="sale__card reveal reveal-delay-1">
+              <img src="assets/hmgoepprod 4.jpeg" alt="Men's outerwear on sale" loading="lazy" />
+              <div class="sale__overlay">
+                <span class="sale__category">Man Outerwear</span>
+                <h3 class="sale__label">Sale <span>40%</span> Off</h3>
+                <p class="sale__tagline">Don't miss this deal</p>
+                <button class="btn btn--white" id="saleBtn1">Shop Now</button>
+              </div>
+            </div>
+            <div class="sale__card reveal reveal-delay-2">
+              <img src="assets/zara2.jpg" alt="Women's t-shirt on sale" loading="lazy" />
+              <div class="sale__overlay">
+                <span class="sale__category">Woman T-Shirt</span>
+                <h3 class="sale__label">Sale <span>25%</span> Off</h3>
+                <p class="sale__tagline">Don't miss this deal</p>
+                <button class="btn btn--white" id="saleBtn2">Shop Now</button>
+              </div>
+            </div>
+            <div class="sale__card reveal reveal-delay-3">
+              <img src="assets/hmgoepprod 6.jpeg" alt="Jackets on sale" loading="lazy" />
+              <div class="sale__overlay">
+                <span class="sale__category">Jackets</span>
+                <h3 class="sale__label">Sale <span>20%</span> Off</h3>
+                <p class="sale__tagline">Don't miss this deal</p>
+                <button class="btn btn--white" id="saleBtn3">Shop Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Grid (Must Have) -->
+      <section class="products" id="products">
+        <div class="section__container">
+          <div class="section__header reveal">
+            <span class="section__kicker">Curated Picks</span>
+            <h2 class="section__title">Must Have</h2>
+            <p class="section__subtitle">Handpicked essentials for every occasion and style preference.</p>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="products__filter reveal">
+            <button class="products__filter-btn active" data-filter="all" id="filterAll">All</button>
+            <button class="products__filter-btn" data-filter="man" id="filterMan">Man</button>
+            <button class="products__filter-btn" data-filter="women" id="filterWomen">Women</button>
+            <button class="products__filter-btn" data-filter="bag" id="filterBag">Bag</button>
+            <button class="products__filter-btn" data-filter="shoes" id="filterShoes">Shoes</button>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="products__grid" id="productsGrid">
+            <div class="product-card reveal reveal-delay-1" data-category="man" data-name="Basic Long Sleeve T-Shirt" data-price="1750">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod9.jpg" alt="Basic long sleeve T-shirt" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Basic Long Sleeve T-Shirt" data-price="1750">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Basic Long Sleeve T-Shirt</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,750</span>
+                  <span class="product-card__price-original">₹3,999</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-2" data-category="women" data-name="Ribbed T-Shirt with Buttons" data-price="2000">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod12.jpg" alt="Ribbed T-shirt with buttons" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Ribbed T-Shirt with Buttons" data-price="2000">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Ribbed T-Shirt with Buttons</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹2,000</span>
+                  <span class="product-card__price-original">₹2,500</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-3" data-category="man" data-name="Jacket with Side Strips" data-price="3000">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod13.jpg" alt="Jacket with side strips" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Jacket with Side Strips" data-price="3000">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Jacket with Side Strips</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹3,000</span>
+                  <span class="product-card__price-original">₹4,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-4" data-category="shoes" data-name="High-Heel Tubular Sandals" data-price="1500">
+              <div class="product-card__image">
+                <img src="assets/musthave-4.png" alt="High-heel tubular sandals" loading="lazy" />
+                <button class="product-card__quick-add" data-product="High-Heel Tubular Sandals" data-price="1500">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">High-Heel Tubular Sandals</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,500</span>
+                  <span class="product-card__price-original">₹2,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-1" data-category="bag" data-name="Coral Fabric Belt Bag" data-price="1000">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod 17.jpeg" alt="Coral fabric belt bag" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Coral Fabric Belt Bag" data-price="1000">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Coral Fabric Belt Bag</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,000</span>
+                  <span class="product-card__price-original">₹1,500</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-2" data-category="man" data-name="Basic White Shirt" data-price="750">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod 8.jpeg" alt="Basic white shirt" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Basic White Shirt" data-price="750">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Basic White Shirt</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹750</span>
+                  <span class="product-card__price-original">₹1,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-3" data-category="shoes" data-name="White Shoes" data-price="1500">
+              <div class="product-card__image">
+                <img src="assets/instagram-5.jpg" alt="White shoes" loading="lazy" />
+                <button class="product-card__quick-add" data-product="White Shoes" data-price="1500">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">White Shoes</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,500</span>
+                  <span class="product-card__price-original">₹2,500</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-4" data-category="man" data-name="Sweater Vest with Sleeves" data-price="800">
+              <div class="product-card__image">
+                <img src="assets/image55.jpg" alt="Sweater vest with sleeves" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Sweater Vest with Sleeves" data-price="800">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Sweater Vest with Sleeves</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹800</span>
+                  <span class="product-card__price-original">₹1,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-1" data-category="man" data-name="Slim Fit Pants" data-price="1100">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod 11.jpeg" alt="Slim fit pants" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Slim Fit Pants" data-price="1100">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Slim Fit Pants</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,100</span>
+                  <span class="product-card__price-original">₹1,999</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-2" data-category="bag" data-name="Gray Backpack" data-price="1500">
+              <div class="product-card__image">
+                <img src="assets/musthave-10.png" alt="Gray backpack" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Gray Backpack" data-price="1500">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Gray Backpack</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹1,500</span>
+                  <span class="product-card__price-original">₹2,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-3" data-category="women" data-name="Women Sweatshirt" data-price="499">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod 16.jpeg" alt="Women sweatshirt" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Women Sweatshirt" data-price="499">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Women Sweatshirt</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹499</span>
+                  <span class="product-card__price-original">₹899</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card reveal reveal-delay-4" data-category="man" data-name="Hooded Nautical Jacket" data-price="499">
+              <div class="product-card__image">
+                <img src="assets/hmgoepprod 10.jpeg" alt="Hooded nautical jacket" loading="lazy" />
+                <button class="product-card__quick-add" data-product="Hooded Nautical Jacket" data-price="499">Quick Add</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">Hooded Nautical Jacket</h3>
+                <div class="product-card__price">
+                  <span class="product-card__price-current">₹499</span>
+                  <span class="product-card__price-original">₹899</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Editorial / Latest News -->
+      <section class="editorial" id="editorial">
+        <div class="section__container">
+          <div class="section__header reveal">
+            <span class="section__kicker">From the Blog</span>
+            <h2 class="section__title">Latest News</h2>
+            <p class="section__subtitle">Insights, trends, and stories from the world of fashion.</p>
+          </div>
+          <div class="editorial__grid">
+            <article class="editorial-card reveal reveal-delay-1">
+              <div class="editorial-card__image">
+                <img src="assets/image1.jpeg" alt="Seasonal trends article" loading="lazy" />
+              </div>
+              <div class="editorial-card__body">
+                <div class="editorial-card__meta">
+                  <span>Fashion</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Karthik</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Feb 2, 2024</span>
+                </div>
+                <h3 class="editorial-card__title">Seasonal Trends</h3>
+                <p class="editorial-card__excerpt">
+                  Discuss the latest fashion trends for the current season and
+                  offer tips and ideas on how to incorporate these trends into
+                  your wardrobe.
+                </p>
+                <a href="#" class="btn btn--secondary" id="editorialBtn1">Read More</a>
+              </div>
+            </article>
+
+            <article class="editorial-card reveal reveal-delay-2">
+              <div class="editorial-card__image">
+                <img src="assets/image2.jpeg" alt="Fashion tips and advice article" loading="lazy" />
+              </div>
+              <div class="editorial-card__body">
+                <div class="editorial-card__meta">
+                  <span>Trends</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Akhil</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Apr 15, 2024</span>
+                </div>
+                <h3 class="editorial-card__title">Fashion Tips and Advice</h3>
+                <p class="editorial-card__excerpt">
+                  Provide your readers with practical tips and advice on how to
+                  dress for different occasions, body types, or style preferences.
+                </p>
+                <a href="#" class="btn btn--secondary" id="editorialBtn2">Read More</a>
+              </div>
+            </article>
+
+            <article class="editorial-card reveal reveal-delay-3">
+              <div class="editorial-card__image">
+                <img src="assets/image3.jpeg" alt="Sustainable fashion article" loading="lazy" />
+              </div>
+              <div class="editorial-card__body">
+                <div class="editorial-card__meta">
+                  <span>Style</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Guna</span>
+                  <span class="editorial-card__meta-dot"></span>
+                  <span>Jul 18, 2024</span>
+                </div>
+                <h3 class="editorial-card__title">Sustainable Fashion</h3>
+                <p class="editorial-card__excerpt">
+                  Cover the growing trend of eco-conscious fashion and explore the
+                  various ways to be sustainable in your fashion choices.
+                </p>
+                <a href="#" class="btn btn--secondary" id="editorialBtn3">Read More</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brands Marquee -->
+      <section class="brands" id="brands">
+        <div class="brands__header reveal">
+          <span class="section__kicker">Trusted Partners</span>
+        </div>
+        <div class="brands__track">
+          <div class="brands__item"><img src="assets/brand-1.png" alt="Brand partner 1" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-2.png" alt="Brand partner 2" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-3.png" alt="Brand partner 3" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-4.png" alt="Brand partner 4" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-5.png" alt="Brand partner 5" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-6.png" alt="Brand partner 6" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-1.png" alt="Brand partner 1" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-2.png" alt="Brand partner 2" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-3.png" alt="Brand partner 3" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-4.png" alt="Brand partner 4" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-5.png" alt="Brand partner 5" loading="lazy" /></div>
+          <div class="brands__item"><img src="assets/brand-6.png" alt="Brand partner 6" loading="lazy" /></div>
+        </div>
+      </section>
+
+      <!-- Instagram Section -->
+      <section class="instagram-section" id="instagram">
+        <div class="section__header reveal" style="padding: 0 1rem; margin-bottom: 2rem;">
+          <span class="section__kicker">@sumanthessentials</span>
+          <h2 class="section__title" style="font-size: 1.75rem;">Follow Us on Instagram</h2>
+        </div>
+        <div class="instagram__grid">
+          <div class="instagram__item"><img src="assets/instagram-1.jpg" alt="Instagram post 1" loading="lazy" /></div>
+          <div class="instagram__item"><img src="assets/instagram-2.jpg" alt="Instagram post 2" loading="lazy" /></div>
+          <div class="instagram__item"><img src="assets/instagram-3.jpg" alt="Instagram post 3" loading="lazy" /></div>
+          <div class="instagram__item"><img src="assets/instagram-4.jpg" alt="Instagram post 4" loading="lazy" /></div>
+          <div class="instagram__item"><img src="assets/instagram-5.jpg" alt="Instagram post 5" loading="lazy" /></div>
+          <div class="instagram__item"><img src="assets/instagram-6.jpg" alt="Instagram post 6" loading="lazy" /></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+      <div class="section__container">
+        <div class="footer__grid">
+          <!-- Brand Column with social icons beside -->
+          <div class="footer__col reveal">
+            <div class="footer__brand-row">
+              <p class="footer__brand-name">SUMANTH ESSENTIALS</p>
+              <div class="footer__social">
+                <a href="#" title="Instagram"><i class="ri-instagram-line"></i></a>
+                <a href="#" title="Twitter"><i class="ri-twitter-x-line"></i></a>
+                <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" title="Pinterest"><i class="ri-pinterest-line"></i></a>
+              </div>
+            </div>
+            <p class="footer__brand-desc">
+              Curated fashion essentials for the modern wardrobe. Premium quality meets timeless design.
+            </p>
+          </div>
+
+          <!-- Company Links -->
+          <div class="footer__col reveal reveal-delay-1">
+            <h4 class="footer__heading">Company</h4>
+            <div class="footer__links">
+              <a href="#">Home</a>
+              <a href="#">About Us</a>
+              <a href="#">Work With Us</a>
+              <a href="#">Our Blog</a>
+              <a href="#">Terms & Conditions</a>
+            </div>
+          </div>
+
+          <!-- Useful Links -->
+          <div class="footer__col reveal reveal-delay-2">
+            <h4 class="footer__heading">Useful Links</h4>
+            <div class="footer__links">
+              <a href="#">Help</a>
+              <a href="#">Track My Order</a>
+              <a href="#">Men</a>
+              <a href="#">Women</a>
+              <a href="#">Shoes</a>
+            </div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer__col reveal reveal-delay-3">
+            <h4 class="footer__heading">Contact</h4>
+            <div class="footer__contact-item">
+              <i class="ri-map-pin-2-fill"></i>
+              <span>Suite 404, Fashion Square, Avenue 12, Metro City 500081</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="ri-mail-fill"></i>
+              <span>support@sumanthessentials.com</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="ri-phone-fill"></i>
+              <span>(+91) 98765 43210</span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="footer__divider" />
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            Copyright &copy; 2024 SUMANTH ESSENTIALS. All rights reserved.
+          </p>
+          <div class="footer__newsletter">
+            <input type="email" placeholder="Enter your email" id="newsletterInput" />
+            <button type="button" id="newsletterBtn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+      <i class="ri-check-line"></i>
+      <span id="toastMessage">Added to bag!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=20261015"></script>
+  </body>
+</html>
